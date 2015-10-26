@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Computer extends Player {
     public Computer(int score, Hand h) {
 
-        super("Jonny Walker", score, h);
+        super("Johnny Walker", score, h);
     }
 
     public void getTopcard(Card card){

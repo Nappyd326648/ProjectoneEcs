@@ -14,9 +14,9 @@ public class Deck {
     static final char Hearts = '\u2665';
     static final char Spades = '\u2660';
     String club ="Club";
-    String diamond="Diamonds";
-    String heart= "Hearts";
-    String spade ="Spades";
+    String diamond="Diamond";
+    String heart= "Heart";
+    String spade ="Spade";
     String[] suits = {club, diamond, heart, spade};
 
     String[] values = {"A", "2" , "3" , "4","5", "6" , "7" , "8","9", "10" ,"J","Q","K"};

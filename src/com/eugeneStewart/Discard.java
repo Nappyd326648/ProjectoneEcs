@@ -15,17 +15,17 @@ public class Discard extends Deck{
     }
 
     public void addCard(Card c) {
-        enddeck.add(c);
+        enddeck.addLast(c);
     }
 
     public Card topCard() {
         //if (Startdeck != null) {
-        return enddeck.peekLast();
+        return enddeck.get(0);
         //if (enddeck== null)
     }
     public Boolean isPlayable(Card c){
-        Card n =enddeck.peekLast();
-        if (c.suit.equals(n.suit) || c.value.equals(n.value)){
+        Card n =enddeck.get(0);
+        if (c.suit.equals(n.suit) || c.value.equals(n.value)||c.value.equals("8")){
             return true;
         }
         else
