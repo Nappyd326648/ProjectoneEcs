@@ -89,7 +89,7 @@ public class Hand {
             if (n.suit == played.suit) {
                 return n;
             }
-            else if (n.suit == played.suit){
+            else if (n.value == played.value){
                 return n;
             }
         }

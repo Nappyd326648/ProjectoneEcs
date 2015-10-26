@@ -1,5 +1,7 @@
 package com.eugeneStewart;
 
+import com.sun.javafx.fxml.ParseTraceElement;
+
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.Scanner;
@@ -42,7 +44,13 @@ public class Main {
         k.addCard(d.drawCard());
         //this will loop the game until game over == true
         while (!gameover(c.hand.size(),h.hand.size())) {
-            //this gets the top card from the discard pile and makes it evaluable
+            try {
+                if (d.size()==0){
+                    for(int x= 0;x!=k.size();x++){
+                        d.addCard(k.drawCard());
+                    }
+                }
+                //this gets the top card from the discard pile and makes it evaluable
             played=k.topCard();
             //this prints out how many cards the computer has
             System.out.println(c.name + " has " + c.hand.size() + " cards");
@@ -51,7 +59,8 @@ public class Main {
             //this displays what the top card is
             System.out.println("the top card is " + k.topCard());
             //this get the users choice as and int
-            answer = s.nextInt();
+           String sanswer = s.nextLine();
+            answer = Integer.parseInt(sanswer);
             //this is for when a user plays an eight, it stores the change in the suit
             String suit="";
             //this decides if the user want to draw a card
@@ -74,7 +83,8 @@ public class Main {
                         //this will display an array of the suits with numbers for the user to display
                         h.hand.printSuit();
                         //this get the users choice as and int
-                        answer = s.nextInt();
+                         sanswer = s.nextLine();
+                        answer = Integer.parseInt(sanswer);
                         //changes users choice to a suit
                         suit=h.hand.suit(answer);
                         //this changes the card suit to the players choice
@@ -85,18 +95,18 @@ public class Main {
                         endTurn = true;
                     }
                     //this test to see if the user has played a two
-                    if(played.value == "2"){
+                   // if(played.value == "2"){
 
                         k.addCard(played);
-                       if(c.hand.lookatCard(played)){
-                           endTurn=true;
-                       }
-                        else{
-                           c.hand.addCard(d.drawCard());
-                           c.hand.addCard(d.drawCard());
-                       }
+                      // if(c.hand.lookatCard(played)){
+                         //  endTurn=true;
+                      // }
+                      //  else{
+                          // c.hand.addCard(d.drawCard());
+                          // c.hand.addCard(d.drawCard());
+                      // }
 
-                    }
+                  //  }
 
                     endTurn = true;
                 }
@@ -108,45 +118,54 @@ public class Main {
             }
             while (endTurn) {
                 played=k.topCard();
-                if(played.value=="2"){
-                    played=c.hand.findtwo(played);
-                    if(played==null){
-                        endTurn=false;
-                    }
-                    c.hand.removeCard(played);
-                    k.addCard(played);
-                    if(h.hand.lookatCard(played)==true){
-                        System.out.println("Do you want to draw four");
-                        endTurn=false;
-                    }
-                    else {
-                        h.hand.addCard(d.drawCard());
-                        h.hand.addCard(d.drawCard());
-                        h.hand.addCard(d.drawCard());
-                        h.hand.addCard(d.drawCard());
-                    }
-                }
+                //if(played.value=="2"){
+                   // played=c.hand.findtwo(played);
+                   // if(played==null){
+                       // endTurn=false;
+                    //}/
+                  //  c.hand.removeCard(played);
+                  //  k.addCard(played);
+                   // if(h.hand.lookatCard(played)==true){
+                //        System.out.println("Do you want to draw four");
+                   //     endTurn=false;
+                   // }
+                  //  else {
+                   //     h.hand.addCard(d.drawCard());
+                   //     h.hand.addCard(d.drawCard());
+                   //     h.hand.addCard(d.drawCard());
+                  //  }
+                //}
                 played= c.hand.cPlayable(played);
 
                 if(played==null){
                     played= c.hand.findeight(played);
                             if (played==null){
                                 c.hand.addCard(d.drawCard());
+                                System.out.println("Johnny Walker Drew  a card");
                                 endTurn=false;
                             }
                     else if(played.value =="8")  {
                                 played.suit=c.hand.newsuit();
                                 c.hand.removeCard(played);
+                                System.out.println(played);
                                 k.addCard(played);
+
                                 endTurn=false;
                     }
                 }
                 else {
 
                     c.hand.removeCard(played);
+                    System.out.println(played);
                     k.addCard(played);
+
                     endTurn = false;
                 }
+            }
+            }
+            catch (Exception e){
+                System.out.println("Input is invalid pick a number");
+                endTurn=false;
             }
 
 
@@ -156,6 +175,7 @@ public class Main {
 
         }
     }
+
     //this test if the game is over
     private static boolean gameover(int c, int h)
     {

@@ -60,6 +60,12 @@ public class Deck {
 
     //}
             }
+    public int size() {
+        return Startdeck.size();
+    }
+    public void addCard(Card c) {
+        Startdeck.add(c);
+    }
 }
 
 

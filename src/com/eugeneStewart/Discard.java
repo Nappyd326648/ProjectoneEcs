@@ -15,16 +15,16 @@ public class Discard extends Deck{
     }
 
     public void addCard(Card c) {
-        enddeck.addLast(c);
+        enddeck.add(c);
     }
 
     public Card topCard() {
         //if (Startdeck != null) {
-        return enddeck.get(0);
+        return enddeck.getLast();
         //if (enddeck== null)
     }
     public Boolean isPlayable(Card c){
-        Card n =enddeck.get(0);
+        Card n =enddeck.getLast();
         if (c.suit.equals(n.suit) || c.value.equals(n.value)||c.value.equals("8")){
             return true;
         }
@@ -33,6 +33,9 @@ public class Discard extends Deck{
             return false;
         }
 
+    }
+    public int size() {
+        return enddeck.size();
     }
     public LinkedList<Card> removeall(){
         return enddeck;
